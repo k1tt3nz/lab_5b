@@ -46,3 +46,34 @@ void clearVector(vector *v) {
 void shrinkToFit(vector *v) {
     v->capacity = v->size;
 }
+
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+int getVectorValue(vector *v, size_t i) {
+    return v->data[i];
+}
+
+void pushBack(vector *v, int x) {
+    if (v->capacity == 0) {
+        reserveVector(v, 1);
+    } else if (isFull(v)) {
+        reserveVector(v, v->capacity * 2);
+    }
+
+    v->data[v->size] = x;
+    v->size++;
+}
+
+void popBack(vector *v) {
+    if (v->size == 0) {
+        exit(1);
+    } else {
+        v->size--;
+    }
+}

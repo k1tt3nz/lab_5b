@@ -1,6 +1,5 @@
-#ifndef COURSE_VECTOR_H
-#define COURSE_VECTOR_H
-
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -25,4 +24,20 @@ void clearVector(vector *v);
 //Освобождает память выделенную под неиспользуемые элементы
 void shrinkToFit(vector *v);
 
+//Вернет "истину", если вектор пуст, иначе - "лож"
+bool isEmpty();
+
+//Вернет "истину", вектор полный, иначе - "лож"
+bool isFull();
+
+//Возвращает i-ый элемент вектора v
+int getVectorValue();
+
+//Добавляет элемент x в конец вектора v
+void pushBack();
+
+//Удаляет последний элемент вектора
+void popBack();
+
+#include "vector.c"
 #endif //VECTOR_H
