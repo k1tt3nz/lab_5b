@@ -187,13 +187,42 @@ void test_pushBack_fullVector() {
     assert(v.data[10] == 10);
 }
 
-void test_popBack_notEmptyVector() {
-    vector v = createVector(0);
-    pushBack(&v, 10);
+void test_atVector_notEmptyVector() {
+    vector v = createVector(5);
+    v.size = v.capacity;
+    size_t i = 0;
+    assert(atVector(&v, i) == v.data + i);
+    deleteVector(&v);
 
-    assert(v.size == 1);
+}
 
-    popBack(&v);
-    assert(v.size == 0);
-    assert(v.capacity == 1);
+void test_atVector_requestToLastElement() {
+    vector v = (vector) {(int[]) {1, 2, 3}, 3, 3};
+    assert(*atVector(&v, v.size - 1) == 3);
+
+    deleteVector(&v);
+}
+
+void test_atVector() {
+    test_atVector_notEmptyVector();
+    test_atVector_requestToLastElement();
+}
+
+void test_back_oneElementInVector() {
+    vector v = (vector) {(int[]) {1}, 1, 1};
+    assert(*vectorBack(&v) == 1);
+
+    deleteVector(&v);
+}
+
+void test_front_oneElementInVector() {
+    vector v = (vector) {(int[]) {1}, 1, 1};
+    assert(*vectorFront(&v) == 1);
+
+    deleteVector(&v);
+}
+
+void test_backAndFront() {
+    test_back_oneElementInVector();
+    test_front_oneElementInVector();
 }

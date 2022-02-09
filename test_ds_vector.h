@@ -41,6 +41,16 @@ void test_pushBack_fullVector();
 
 void test_popBack_notEmptyVector();
 
+void test_atVector_notEmptyVector();
+
+void test_back_oneElementInVector();
+
+void test_front_oneElementInVector();
+
+void test_atVector();
+
+void test_backAndFront();
+
 #include "test_ds_vector.c"
 
-#endif //COURSE_TEST_DS_VECTOR_H
+#endif //TEST_DS_VECTOR_H
