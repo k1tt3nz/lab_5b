@@ -47,15 +47,15 @@ void shrinkToFit(vector *v) {
     v->capacity = v->size;
 }
 
-bool isEmpty(vector *v) {
+bool isEmpty(const vector *v) {
     return v->size == 0;
 }
 
-bool isFull(vector *v) {
+bool isFull(const vector *v) {
     return v->size == v->capacity;
 }
 
-int getVectorValue(vector *v, size_t i) {
+vector_base_t getVectorValue(const vector *v, size_t i) {
     return v->data[i];
 }
 
@@ -79,7 +79,7 @@ void popBack(vector *v) {
     }
 }
 
-int *atVector(vector *v, size_t index) {
+vector_base_t *atVector(vector *v, size_t index) {
     if (index > v->size || index <= 0) {
         printf("IndexError: %zu is not exists", index);
     } else {
@@ -87,10 +87,10 @@ int *atVector(vector *v, size_t index) {
     }
 }
 
-int *vectorBack(vector *v) {
+vector_base_t *vectorBack(vector *v) {
     return atVector(v, v->size - 1);
 }
 
-int *vectorFront(vector *v) {
+vector_base_t *vectorFront(vector *v) {
     return atVector(v, 0);
 }

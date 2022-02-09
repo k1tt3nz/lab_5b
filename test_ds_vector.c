@@ -4,8 +4,6 @@
 #include <assert.h>
 
 void test_createVector_deleteVector_NULL() {
-    printf("Create vector capacity = 0 :");
-
     int capacity = 0;
     vector v = createVector(capacity);
     assert(v.data == NULL);
@@ -18,27 +16,17 @@ void test_createVector_deleteVector_NULL() {
 
     deleteVector(&v);
     assert(v.data == NULL);
-
-    printf(" success\n");
 }
 
 void test_createVector_deleteVector_notNULL() {
-    printf("Create vector capacity = 666 :");
-
     int capacity = 666;
     vector v = createVector(capacity);
     assert(v.data != NULL);
     assert(v.size == 0);
     assert(v.capacity == capacity);
 
-    printf(" success\n");
-
-    printf("delete vector:");
-
     deleteVector(&v);
     assert(v.data == NULL);
-
-    printf(" success\n");
 }
 
 void test_createVector_deleteVector() {
@@ -47,8 +35,6 @@ void test_createVector_deleteVector() {
 }
 
 void test_reserveVector_null() {
-    printf("newCapacity = 0 :");
-
     size_t newCapacity = 0;
     vector v = createVector(10);
     v.size = 5;
@@ -58,13 +44,9 @@ void test_reserveVector_null() {
     assert(v.size == v.capacity);
 
     deleteVector(&v);
-
-    printf(" success\n");
 }
 
 void test_reserveVector_less() {
-    printf("newCapacity = 5; size = 10 :");
-
     size_t newCapacity = 5;
     vector v = createVector(newCapacity);
     v.size = 10;
@@ -74,13 +56,9 @@ void test_reserveVector_less() {
     assert(v.size == newCapacity);
 
     deleteVector(&v);
-
-    printf(" success\n");
 }
 
 void test_reserveVector_more() {
-    printf("newCapacity = 100; size = 10 :");
-
     size_t newCapacity = 100;
     vector v = createVector(10);
     v.size = 10;
@@ -90,13 +68,9 @@ void test_reserveVector_more() {
     assert(v.size == 10);
 
     deleteVector(&v);
-
-    printf(" success\n");
 }
 
 void test_reserveVector_equals() {
-    printf("newCapacity = 10; size = 10 :");
-
     size_t newCapacity = 10;
     vector v = createVector(10);
     v.size = 10;
@@ -106,8 +80,6 @@ void test_reserveVector_equals() {
     assert(v.size == 10);
 
     deleteVector(&v);
-
-    printf(" success\n");
 }
 
 void test_reserveVector() {
@@ -118,29 +90,26 @@ void test_reserveVector() {
 }
 
 void test_clearVector_null() {
-    printf("Clear vector :");
     vector v = {v.data, 10, 20};
 
     clearVector(&v);
     assert(v.size == 0);
 
-    printf(" success\n");
+    deleteVector(&v);
 }
 
 void test_isEmpty_empty() {
-    printf("isEmpty empty :");
     vector v = {v.data, 0, 10};
     assert(isEmpty(&v));
 
-    printf(" success\n");
+    deleteVector(&v);
 }
 
 void test_isEmpty_notEmpty() {
-    printf("isEmpty not empty:");
     vector v = {v.data, 1, 10};
     assert(!isEmpty(&v));
 
-    printf(" success\n");
+    deleteVector(&v);
 }
 
 void test_isEmpty() {
@@ -151,11 +120,15 @@ void test_isEmpty() {
 void test_isFull_full() {
     vector v = {v.data, 10, 10};
     assert(isFull(&v));
+
+    deleteVector(&v);
 }
 
 void test_isFull_notFull() {
     vector v = {v.data, 1, 10};
     assert(!isFull(&v));
+
+    deleteVector(&v);
 }
 
 void test_isFull() {
@@ -169,6 +142,8 @@ void test_getVectorValue() {
     pushBack(&v, x);
 
     assert(v.data[0] == x);
+
+    deleteVector(&v);
 }
 
 void test_pushBack_emptyVector() {
@@ -177,6 +152,8 @@ void test_pushBack_emptyVector() {
     pushBack(&v, x);
 
     assert(v.data[0] == x);
+
+    deleteVector(&v);
 }
 
 void test_pushBack_fullVector() {
@@ -185,6 +162,8 @@ void test_pushBack_fullVector() {
     pushBack(&v, x);
 
     assert(v.data[10] == 10);
+
+    deleteVector(&v);
 }
 
 void test_atVector_notEmptyVector() {

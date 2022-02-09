@@ -1,13 +1,16 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+
 #include <stdbool.h>
 #include <stdio.h>
 
-typedef struct vector{
-    int *data;          //Указатель на элементы вектора
-    size_t size;        //Размер вектора
-    size_t capacity;    //Вместимость вектора
-}vector;
+typedef int vector_base_t;  //Используем vector_base_t в качестве псевдонима для типа int
+
+typedef struct vector {
+    vector_base_t *data;        //Указатель на элементы вектора
+    size_t size;                //Размер вектора
+    size_t capacity;            //Вместимость вектора
+} vector;
 
 //Возвращает структуру-дескриптор вектор из capacity значений
 vector createVector(const size_t capacity);
@@ -40,13 +43,14 @@ void pushBack();
 void popBack();
 
 //Возвращает указатель на index-ный элемент вектора
-int* atVector(vector *v, size_t index);
+int *atVector(vector *v, size_t index);
 
 //Возвращает указатель на последний элемент вектора
-int* vectorBack(vector *v);
+int *vectorBack(vector *v);
 
 //Возвращает указатель на нулевой элемент вектора
-int* vectorFront(vector *v);
+int *vectorFront(vector *v);
 
 #include "vector.c"
+
 #endif //VECTOR_H
